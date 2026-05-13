@@ -51,15 +51,23 @@ function Reveal({ as: Tag = 'div', delay = 0, children, className = '', style = 
 /* ------------------------------------------------------------------ */
 /* Placeholder — monospace striped image slot                          */
 /* ------------------------------------------------------------------ */
-function Placeholder({ label = 'Image', ratio = '4 / 3', className = '', style = {} }) {
+function Placeholder({ label = 'Image', ratio = '4 / 3', src, alt, className = '', style = {} }) {
   return (
     <div
-      className={`placeholder ${className}`}
+      className={`placeholder ${src ? 'has-img' : ''} ${className}`}
       style={{ aspectRatio: ratio, ...style }}
       role="img"
-      aria-label={`Placeholder: ${label}`}
+      aria-label={src ? (alt || label) : `Placeholder: ${label}`}
     >
-      <span className="ph-label">{label}</span>
+      {src
+        ? <img
+            src={src}
+            alt={alt || label}
+            loading="lazy"
+            decoding="async"
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
+        : <span className="ph-label">{label}</span>}
     </div>
   );
 }

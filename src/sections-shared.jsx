@@ -124,55 +124,78 @@ function SectionSystem({ direction }) {
           gap: 'clamp(12px, 2vw, 24px)'
         }}>
           <Reveal delay={40} style={{ gridColumn: 'span 12' }}>
-            <Placeholder label="C01 · Hero shot · 3/4 product render" ratio="16 / 9" />
+            <Placeholder
+              ratio="16 / 9"
+              src="assets/keyboards/c01-hero.jpg"
+              alt="C01 Recon — top-down product shot"
+            />
           </Reveal>
 
           <Reveal delay={80} style={{ gridColumn: 'span 4' }}>
-            <Placeholder label="C01 Signal · top-down" ratio="1 / 1" />
+            <Placeholder
+              ratio="1 / 1"
+              src="assets/keyboards/c01-angle.jpg"
+              alt="C01 Recon — 3/4 angle"
+            />
           </Reveal>
           <Reveal delay={140} style={{ gridColumn: 'span 4' }}>
-            <Placeholder label="C01 Recon · macro" ratio="1 / 1" />
+            <Placeholder
+              ratio="1 / 1"
+              src="assets/keyboards/c01-macro.jpg"
+              alt="C01 Recon — keycap and rotary macro"
+            />
           </Reveal>
           <Reveal delay={200} style={{ gridColumn: 'span 4' }}>
-            <Placeholder label="C01 Strike · detail" ratio="1 / 1" />
+            <Placeholder
+              ratio="1 / 1"
+              src="assets/keyboards/c01-side.jpg"
+              alt="C01 Recon — side profile, USB-C and mode toggle"
+            />
           </Reveal>
         </div>
 
-        {/* Colorways strip */}
-        <Reveal delay={80}>
-          <div style={{
-            marginTop: 'clamp(40px, 6vw, 72px)',
-            borderTop: '1px solid var(--ink)',
-            borderBottom: '1px solid var(--ink)',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)'
-          }}>
-            {[
-              { n: '001 / 200', name: 'Signal', desc: 'Neutral · cream', sw: '#D9CFB2' },
-              { n: '001 / 200', name: 'Recon',  desc: 'Stealth · graphite', sw: '#2B2C2E' },
-              { n: '001 / 200', name: 'Strike', desc: 'Accent · signal orange', sw: '#FF5B1F' },
-            ].map((c, i) => (
-              <div key={c.name} style={{
-                padding: 'clamp(20px, 3vw, 36px)',
-                borderLeft: i === 0 ? 'none' : '1px solid var(--ink)',
-                display: 'flex', flexDirection: 'column', gap: 14
-              }}>
-                <MonoLabel style={{ opacity: 0.55 }}>{c.n}</MonoLabel>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                  <span aria-hidden="true" style={{
-                    width: 28, height: 28, background: c.sw,
-                    border: '1px solid var(--ink)',
-                    flex: 'none'
-                  }} />
-                  <span className="font-display" style={{ fontSize: 36, lineHeight: 0.9 }}>
-                    C01 {c.name.toUpperCase()}
-                  </span>
-                </div>
-                <div style={{ fontSize: 12, opacity: 0.7 }}>{c.desc}</div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+        {/* Packaging strip */}
+        <div style={{
+          marginTop: 'clamp(40px, 6vw, 72px)',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+          marginBottom: 24, gap: 24, flexWrap: 'wrap'
+        }}>
+          <Reveal>
+            <MonoLabel style={{ opacity: 0.6 }}>02·B · The Capsule</MonoLabel>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="font-mono" style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6 }}>
+              Numbered crate · Signal &amp; Recon shown
+            </div>
+          </Reveal>
+        </div>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(12, 1fr)',
+          gap: 'clamp(12px, 2vw, 24px)'
+        }}>
+          <Reveal delay={40} style={{ gridColumn: 'span 4' }}>
+            <Placeholder
+              ratio="3 / 4"
+              src="assets/keyboards/box-signal.jpg"
+              alt="C01 Signal — packaging"
+            />
+          </Reveal>
+          <Reveal delay={100} style={{ gridColumn: 'span 4' }}>
+            <Placeholder
+              ratio="3 / 4"
+              src="assets/keyboards/box-recon.jpg"
+              alt="C01 Recon — packaging"
+            />
+          </Reveal>
+          <Reveal delay={160} style={{ gridColumn: 'span 4' }}>
+            <Placeholder
+              ratio="3 / 4"
+              src="assets/keyboards/box-open.jpg"
+              alt="C01 — opened crate with numbered cloth"
+            />
+          </Reveal>
+        </div>
 
         {/* Specs row */}
         <div style={{
