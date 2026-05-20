@@ -198,9 +198,12 @@ function FilmGateway({ compact = false }) {
         <video
           ref={videoRef}
           src="assets/canary-video.mp4"
+          poster="assets/keyboards/c01-hero.jpg"
+          preload="none"
           playsInline
           controls
           onEnded={close}
+          aria-label="Canary C01 film"
           style={{
             width: '90vw', maxWidth: 1200, aspectRatio: '16/9', background: '#000'
           }}
@@ -211,19 +214,44 @@ function FilmGateway({ compact = false }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Signup form (non-functional — logs submission)                      */
+/* Signup form — POSTs to /api/subscribe                               */
 /* ------------------------------------------------------------------ */
-function SignupForm({ variant = 'light' }) {
+function SignupForm({ variant = 'light', source = 'capture' }) {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState('idle'); // idle | ok | err
+  const [company, setCompany] = useState(''); // honeypot — keep empty
+  const [status, setStatus] = useState('idle'); // idle | loading | ok | err
+  const [errMsg, setErrMsg] = useState('');
   const dark = variant === 'dark';
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    const ok = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim());
-    if (!ok) { setStatus('err'); return; }
-    // simulate submission — wire up your endpoint here
-    setStatus('ok');
+    const trimmed = email.trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(trimmed)) {
+      setStatus('err'); setErrMsg('Check your email address.'); return;
+    }
+    setStatus('loading'); setErrMsg('');
+    try {
+      const resp = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: trimmed, company, source })
+      });
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok || !data.ok) {
+        setStatus('err'); setErrMsg('Something went wrong. Try again.'); return;
+      }
+      setStatus('ok');
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          method: 'notify_list',
+          source,
+          value: 1,
+          currency: 'USD'
+        });
+      }
+    } catch (err) {
+      setStatus('err'); setErrMsg('Network error. Try again.');
+    }
   };
 
   if (status === 'ok') {
@@ -244,8 +272,10 @@ function SignupForm({ variant = 'light' }) {
     );
   }
 
+  const busy = status === 'loading';
+
   return (
-    <form onSubmit={submit} noValidate style={{ width: '100%' }}>
+    <form onSubmit={submit} noValidate style={{ width: '100%' }} aria-describedby="signup-msg">
       <div style={{
         display: 'flex',
         border: `1px solid ${dark ? 'var(--canary)' : 'var(--ink)'}`,
@@ -255,9 +285,12 @@ function SignupForm({ variant = 'light' }) {
           type="email"
           required
           value={email}
-          onChange={(e) => { setEmail(e.target.value); if (status === 'err') setStatus('idle'); }}
+          onChange={(e) => { setEmail(e.target.value); if (status === 'err') { setStatus('idle'); setErrMsg(''); } }}
           placeholder="you@domain.com"
           aria-label="Email address"
+          autoComplete="email"
+          inputMode="email"
+          disabled={busy}
           style={{
             flex: 1,
             border: 0, outline: 'none', background: 'transparent',
@@ -267,8 +300,23 @@ function SignupForm({ variant = 'light' }) {
             fontSize: 14
           }}
         />
+        {/* Honeypot — visually hidden, real users won't fill it */}
+        <input
+          type="text"
+          name="company"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          style={{
+            position: 'absolute', left: '-10000px', top: 'auto',
+            width: 1, height: 1, overflow: 'hidden', opacity: 0
+          }}
+        />
         <button
           type="submit"
+          disabled={busy}
           className="font-mono uppercase"
           style={{
             border: 0,
@@ -278,14 +326,19 @@ function SignupForm({ variant = 'light' }) {
             padding: '0 22px',
             fontSize: 11,
             letterSpacing: '0.22em',
-            cursor: 'pointer'
+            cursor: busy ? 'wait' : 'pointer',
+            opacity: busy ? 0.7 : 1
           }}
-        >Notify me</button>
+        >{busy ? 'Sending…' : 'Notify me'}</button>
       </div>
-      <div style={{ marginTop: 10, display: 'flex', justifyContent: 'space-between', fontSize: 11, opacity: 0.7 }}>
+      <div id="signup-msg" style={{ marginTop: 10, display: 'flex', justifyContent: 'space-between', fontSize: 11, opacity: 0.7 }}>
         <span>The Flock gets first access.</span>
-        <span style={{ color: status === 'err' ? 'inherit' : 'transparent' }}>
-          {status === 'err' ? 'Check your email address.' : '—'}
+        <span
+          role={status === 'err' ? 'alert' : undefined}
+          aria-live="polite"
+          style={{ color: status === 'err' ? 'inherit' : 'transparent' }}
+        >
+          {status === 'err' ? (errMsg || 'Check your email address.') : '—'}
         </span>
       </div>
     </form>

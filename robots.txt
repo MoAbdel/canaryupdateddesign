@@ -1,0 +1,54 @@
+# Canary — https://canary.desk/
+# Allow all major search and AI crawlers; gate print variant.
+
+User-agent: *
+Allow: /
+Disallow: /canary-print.html
+Disallow: /api/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /canary-print.html
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /canary-print.html
+Disallow: /api/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /canary-print.html
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /canary-print.html
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /canary-print.html
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /canary-print.html
+Disallow: /api/
+
+User-agent: CCBot
+Allow: /
+Disallow: /canary-print.html
+Disallow: /api/
+
+User-agent: Bytespider
+Allow: /
+Disallow: /canary-print.html
+Disallow: /api/
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /canary-print.html
+Disallow: /api/
+
+Sitemap: https://canary.desk/sitemap.xml

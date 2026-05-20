@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Canary — C01 Capsule landing
 
-## Getting Started
+Static marketing page for the Canary C01 keyboard capsule.
 
-First, run the development server:
+## Stack
+
+- Static HTML (`index.html`, `canary-print.html`)
+- React 18 loaded from CDN (UMD) — see `<script>` tags at the bottom of `index.html`
+- JSX in `src/*.jsx` is compiled in-browser by `@babel/standalone` (dev convenience — not ideal for production; see audit Phase 2)
+- One Vercel serverless function: `api/subscribe.js` (Phase 1 stub, logs only)
+- Deployed on Vercel as a static site (`vercel.json` sets `framework: null`)
+
+## Local development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Serves the current directory on http://localhost:3002 with caching disabled.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The form's POST to `/api/subscribe` will 404 on `npx http-server` — it only exists when deployed to Vercel or run with `vercel dev`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## File map
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+index.html              # main page; <head> contains all meta + JSON-LD
+canary-print.html       # printable variant (noindex)
+robots.txt              # crawl + AI engine rules
+sitemap.xml             # single-page sitemap with image entries
+llms.txt                # AI-engine-readable brand + product summary
+vercel.json             # Vercel config + security headers + cache rules
+api/
+  subscribe.js          # POST endpoint for the notify form (stub)
+src/
+  app.jsx               # React entry — composes sections in order
+  components.jsx        # Reveal, Placeholder, FilmGateway, SignupForm, etc.
+  sections-shared.jsx   # Manifesto, System, Capture, Community, Footer
+  direction-safe.jsx    # Calm/typographic hero variant
+  direction-bold.jsx    # Drop-culture hero variant + ticker
+  tweaks-host.js        # Tweaks panel state (localStorage)
+assets/
+  canary-bug.png        # bug logomark
+  canary-wordmark.png   # full wordmark
+  canary-logo.png       # legacy
+  canary-video.mp4      # 34 MB hero film — re-encode planned
+  keyboards/            # C01 product photography
+```
 
-## Learn More
+## Direction toggle
 
-To learn more about Next.js, take a look at the following resources:
+Two hero variants ship in the same page. Toggle via the bottom-right Tweaks panel (opens via parent-window postMessage in the design host, or by setting `localStorage['canary.tweaks.v1']` manually).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```js
+// in DevTools console:
+localStorage.setItem('canary.tweaks.v1', JSON.stringify({ direction: 'bold' }));
+location.reload();
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy
 
-## Deploy on Vercel
+`git push` → Vercel auto-deploys. `vercel.json` controls headers, caching, and clean URLs. The current CSP is **report-only**; promote to enforcing after a few days of clean reports.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Known gaps (see audit dated 2026-05-20)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `SignupForm` posts to `/api/subscribe`, which currently only logs. Wire to a real ESP (Klaviyo / ConvertKit / Resend) in Phase 2.
+- JSX is still transpiled in-browser. Replace with a real build (esbuild / Vite / Astro) in Phase 2.
+- No `/privacy` or `/terms` page yet.
+- Cookie consent banner not yet built; GA4 ships with consent default-denied.

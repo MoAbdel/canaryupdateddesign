@@ -1,5 +1,14 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# Agent notes for the Canary landing page
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+This repository is a **static site**, not a Next.js project. There is no `app/`, no `pages/`, no `node_modules/next/`.
+
+- Entry: `index.html`
+- React + JSX served from CDN, transpiled in-browser via `@babel/standalone`
+- One Vercel function: `api/subscribe.js`
+- Tweaks panel state lives in `localStorage['canary.tweaks.v1']`
+
+When adding routes:
+- API routes are files under `api/` (Vercel serverless function convention)
+- There is no middleware layer — the site is essentially static
+
+See `README.md` for the full file map.

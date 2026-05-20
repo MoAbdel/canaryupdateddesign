@@ -136,9 +136,12 @@ function FloatingFilmLauncher() {
       <video
         ref={videoRef}
         src="assets/canary-video.mp4"
+        poster="assets/keyboards/c01-hero.jpg"
+        preload="none"
         playsInline
         controls
         onEnded={close}
+        aria-label="Canary C01 film"
         style={{ width: '90vw', maxWidth: 1200, aspectRatio: '16/9', background: '#000' }}
       />
     </div>

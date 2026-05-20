@@ -380,15 +380,14 @@ function SectionCommunity({ direction }) {
           </Reveal>
 
           <Reveal delay={160}>
-            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 32 }}>
-              <a className="font-mono uppercase" href="#" style={{
+            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 32, alignItems: 'center' }}>
+              <a className="font-mono uppercase" href="#capture" style={{
                 border: '1px solid var(--ink)', background: 'var(--ink)', color: 'var(--canary)',
                 padding: '14px 22px', fontSize: 11, letterSpacing: '0.22em'
-              }}>Join The Nest · Discord</a>
-              <a className="font-mono uppercase" href="#" style={{
-                border: '1px solid var(--ink)',
-                padding: '14px 22px', fontSize: 11, letterSpacing: '0.22em'
-              }}>@canary on Instagram</a>
+              }}>Join The Flock</a>
+              <span className="font-mono uppercase" style={{
+                fontSize: 10, letterSpacing: '0.24em', opacity: 0.55
+              }}>The Nest opens at drop</span>
             </div>
           </Reveal>
         </div>
@@ -424,11 +423,10 @@ function Footer() {
           </div>
         </div>
         <div>
-          <MonoLabel style={{ opacity: 0.55 }}>Follow</MonoLabel>
+          <MonoLabel style={{ opacity: 0.55 }}>Notify list</MonoLabel>
           <div style={{ marginTop: 10, fontSize: 13, lineHeight: 1.8 }}>
-            <a href="#">Instagram</a><br />
-            <a href="#">The Nest · Discord</a><br />
-            <a href="#">YouTube</a>
+            <a href="#capture">Join The Flock</a><br />
+            <span style={{ opacity: 0.55 }}>Social channels at drop</span>
           </div>
         </div>
         <div style={{ textAlign: 'right', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.55 }}>

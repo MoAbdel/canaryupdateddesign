@@ -1,0 +1,68 @@
+# Canary
+
+> Canary is an independent design house building limited-run "instruments for the modern desk." First object: the Canary C01, a 65% die-cast aluminum mechanical keyboard released in numbered capsules.
+
+## Product: Canary C01 Capsule
+
+The Canary C01 is the first object in the Canary system.
+
+- **Form factor:** 65% layout, 68 keys
+- **Chassis:** Die-cast aluminum
+- **Connectivity:** Tri-mode — USB-C, 2.4 GHz wireless, Bluetooth
+- **Keycaps:** Three-color PBT
+- **Switches:** Wing (45g tactile) or Canary (50g clicky)
+- **Edition:** Capsule 01 — 600 units total, 200 per colorway, numbered 001 to 200
+- **Colorways:** Signal, Recon, Strike
+- **Price:** USD 175–225 (final pricing confirmed at drop)
+- **Release model:** Single release window per capsule. No restocks within a capsule.
+
+## How to buy
+
+Canary releases capsules in a single time-boxed window. There is no continuous availability — when a capsule sells out, it does not return. Customers join "The Flock" (Canary's notify list) to receive the drop time, product link, and serial range before public release.
+
+- Notify list signup: https://canary.desk/#capture
+- Drop status: see homepage hero ("Drop · TBA" or live countdown)
+
+## Brand positioning
+
+- Founded 2026
+- Tagline: "Instruments for the modern desk."
+- Positioning: "Not gaming. Not generic." — design-led mechanical keyboards as desk objects rather than gaming peripherals.
+- Aesthetic peers / reference points: Teenage Engineering (industrial design), Studio Neat (small-batch desk goods), Aesop (typographic restraint).
+
+## Roadmap
+
+Canary releases its system "in chapters." After C01, additional objects in the system include keycap sets, switches, mats, and crates. Each is numbered and time-boxed in the same way.
+
+## Frequently asked questions
+
+**What is the Canary C01?**
+A 65%, 68-key mechanical keyboard with a die-cast aluminum chassis, tri-mode wireless, and PBT keycaps. It is the first product from Canary.
+
+**How many Canary C01 keyboards are being made?**
+600 units total in Capsule 01: 200 each of Signal, Recon, and Strike colorways. Each unit is numbered 001 to 200 within its colorway.
+
+**What switches does the Canary C01 use?**
+Two switch options at launch: Wing (45 g tactile) and Canary (50 g clicky).
+
+**Is the Canary C01 wireless?**
+Yes — tri-mode: USB-C wired, 2.4 GHz wireless via dongle, and Bluetooth.
+
+**Will the Canary C01 be restocked?**
+No. Canary capsules are single-window releases. When Capsule 01 sells out, the C01 will not be reissued in the same form.
+
+**When does the Canary C01 drop?**
+Drop date is announced to The Flock (the Canary notify list) before public release. Current status is shown on the homepage hero.
+
+**How much does the Canary C01 cost?**
+USD 175 to 225 depending on configuration. Final pricing is confirmed at drop.
+
+**Where can I contact Canary?**
+- General: hello@canary.desk
+- Press: press@canary.desk
+
+## Links
+
+- Home: https://canary.desk/
+- Notify list: https://canary.desk/#capture
+- Sitemap: https://canary.desk/sitemap.xml
