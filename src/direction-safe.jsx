@@ -28,56 +28,58 @@ function HeroSafe({ tweaks }) {
         </div>
       </div>
 
-      {/* Wordmark — anton, giant, top-anchored */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: 'clamp(24px, 4vw, 48px)' }}>
-        <Reveal>
-          <h1 className="font-display" style={{
-            margin: 0,
-            fontSize: 'clamp(96px, 19vw, 340px)',
-            lineHeight: 0.82,
-            textAlign: 'center',
-            letterSpacing: '-0.01em'
-          }}>
-            {/* headline is always "CANARY" in safe hero — the tweakable headline
-                lives in the sub-tagline slot so it stays typographically honest */}
-            CANARY
-          </h1>
-        </Reveal>
-
-        {/* Tagline / tweakable headline */}
-        <div style={{ textAlign: 'center' }}>
-          <Reveal delay={120}>
-            <div className="font-mono uppercase" style={{
-              fontSize: 'clamp(11px, 1.3vw, 14px)',
-              letterSpacing: '0.32em',
-              marginBottom: 18,
-              opacity: 0.9
+      {/* Wordmark — anton, giant, vertically centered */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: 'clamp(24px, 4vw, 48px)' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(28px, 5vw, 56px)' }}>
+          <Reveal>
+            <h1 className="font-display" style={{
+              margin: 0,
+              fontSize: 'clamp(96px, 19vw, 340px)',
+              lineHeight: 0.82,
+              textAlign: 'center',
+              letterSpacing: '-0.01em'
             }}>
-              {tweaks.headline || 'Instruments for the modern desk.'}
-            </div>
+              {/* headline is always "CANARY" in safe hero — the tweakable headline
+                  lives in the sub-tagline slot so it stays typographically honest */}
+              CANARY
+            </h1>
           </Reveal>
 
-          <Reveal delay={200}>
-            <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
-              <div className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: '0.28em', opacity: 0.45 }}>
-                Click to watch
+          {/* Tagline / tweakable headline */}
+          <div style={{ textAlign: 'center' }}>
+            <Reveal delay={120}>
+              <div className="font-mono uppercase" style={{
+                fontSize: 'clamp(11px, 1.3vw, 14px)',
+                letterSpacing: '0.32em',
+                marginBottom: 18,
+                opacity: 0.9
+              }}>
+                {tweaks.headline || 'Instruments for the modern desk.'}
               </div>
-              <button
-                onClick={() => {
-                  const ev = new CustomEvent('canary:play-film');
-                  window.dispatchEvent(ev);
-                }}
-                aria-label="Watch the Canary film"
-                style={{
-                  background: 'transparent', border: 0, cursor: 'pointer', padding: 8
-                }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(0.93)'; e.currentTarget.style.filter = 'drop-shadow(0 6px 16px rgba(0,0,0,0.2))'; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'none'; }}
-              >
-                <img src="assets/canary-bug.png" alt="" style={{ height: 64, width: 'auto', transition: 'transform 0.2s ease' }} />
-              </button>
-            </div>
-          </Reveal>
+            </Reveal>
+
+            <Reveal delay={200}>
+              <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
+                <div className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: '0.28em', opacity: 0.45 }}>
+                  Click to watch
+                </div>
+                <button
+                  onClick={() => {
+                    const ev = new CustomEvent('canary:play-film');
+                    window.dispatchEvent(ev);
+                  }}
+                  aria-label="Watch the Canary film"
+                  style={{
+                    background: 'transparent', border: 0, cursor: 'pointer', padding: 8
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'scale(0.93)'; e.currentTarget.style.filter = 'drop-shadow(0 6px 16px rgba(0,0,0,0.2))'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'none'; }}
+                >
+                  <img src="assets/canary-bug.png" alt="" style={{ height: 64, width: 'auto', transition: 'transform 0.2s ease' }} />
+                </button>
+              </div>
+            </Reveal>
+          </div>
         </div>
 
         {/* Bottom utility strip */}
@@ -86,9 +88,8 @@ function HeroSafe({ tweaks }) {
             display: 'flex', justifyContent: 'space-between', alignItems: 'center',
             fontSize: 10, letterSpacing: '0.24em', textTransform: 'uppercase', opacity: 0.55
           }}>
-            <span>Est. 2026 · Brooklyn</span>
+            <span>Est. 2026</span>
             <span>Scroll ↓</span>
-            <span>600 units · numbered</span>
           </div>
         </Reveal>
       </div>
