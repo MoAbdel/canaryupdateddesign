@@ -91,7 +91,7 @@ function HeroBold({ tweaks }) {
             </Reveal>
             <Reveal delay={80}>
               <div style={{ marginTop: 18, fontSize: 13, lineHeight: 1.7 }}>
-                A 65% die-cast aluminum keyboard. Three colorways. Two switches.
+                A 65% die-cast aluminum mechanical keyboard. Three colorways. Two switches.
                 Numbered 001–200 per colorway. One window.
               </div>
             </Reveal>
@@ -129,7 +129,9 @@ function HeroBold({ tweaks }) {
           <Reveal delay={160}>
             <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
               <FilmGateway />
-              <a href="#capture" className="font-mono uppercase" style={{
+              <a href="#capture" className="font-mono uppercase"
+                onClick={() => { if (window.canaryTrack) window.canaryTrack('hero_cta_click', { label: 'join_the_flock', location: 'hero_bold' }); }}
+                style={{
                 display: 'inline-flex', alignItems: 'center',
                 padding: '14px 22px',
                 border: '1px solid var(--ink)',
