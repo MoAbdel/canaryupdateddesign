@@ -366,7 +366,7 @@ body.nav-open .mobile-nav { opacity: 1; transform: none; pointer-events: auto; }
 }
 .cw-card:hover { transform: translateY(-4px); border-color: rgba(239,206,26,0.45); }
 .cw-img { aspect-ratio: 16/11; background: radial-gradient(120% 120% at 50% 0%, #26272a, #131315); display: grid; place-items: center; overflow: hidden; }
-.cw-img img { width: 92%; height: auto; filter: drop-shadow(0 24px 30px rgba(0,0,0,0.6)); transition: transform .5s ease; }
+.cw-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .cw-card:hover .cw-img img { transform: scale(1.04) translateY(-2px); }
 .cw-body { padding: 20px 22px 24px; }
 .cw-name-row { display: flex; align-items: center; gap: 10px; }
@@ -391,8 +391,8 @@ body.nav-open .mobile-nav { opacity: 1; transform: none; pointer-events: auto; }
   width: 30px; height: 30px; border-radius: 50%;
   border: 1px solid var(--ink); display: grid; place-items: center; color: var(--ink);
 }
-.spec-item h3 { margin: 2px 0 0; font-family: var(--ff-display); font-size: 19px; text-transform: uppercase; letter-spacing: 0.01em; }
-.spec-item p { margin: 4px 0 0; font-size: 13px; color: var(--on-light-70); }
+.spec-item h3 { margin: 2px 0 0; font-family: var(--ff-display); font-size: 23px; text-transform: uppercase; letter-spacing: 0.01em; }
+.spec-item p { margin: 4px 0 0; font-size: 15px; color: var(--on-light-70); }
 .spec-item .review-flag { color: #B07A00; }
 .spec-visual { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--hairline-d); background: var(--paper-2); }
 .spec-visual img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3/4; }
@@ -421,7 +421,7 @@ body.nav-open .mobile-nav { opacity: 1; transform: none; pointer-events: auto; }
 .lifestyle .sound-compare { grid-template-columns: 1fr 1fr; }
 .lifestyle .sound-module { padding: clamp(20px, 2.4vw, 34px); }
 .lifestyle .switch-card { padding: clamp(16px, 1.8vw, 24px); }
-.lifestyle h2 { font-family: var(--ff-display); font-size: clamp(40px, 7vw, 84px); text-transform: uppercase; line-height: 0.9; margin: 12px 0 0; max-width: 14ch; }
+.lifestyle h2 { font-family: var(--ff-display); font-size: clamp(40px, 7vw, 84px); text-transform: uppercase; line-height: 0.9; letter-spacing: 0.08em; margin: 12px 0 0; max-width: 14ch; }
 .ls-copy > p { margin: 18px 0 0; max-width: 40ch; color: var(--on-dark-70); }
 .lifestyle .film-btn { margin-top: 26px; }
 
@@ -451,7 +451,7 @@ body.nav-open .mobile-nav { opacity: 1; transform: none; pointer-events: auto; }
   perspective: 1400px;
 }
 .sound-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(24px, 3vw, 38px); }
-.sound-head h3 { font-family: var(--ff-display); font-size: clamp(26px, 4vw, 40px); text-transform: uppercase; margin: 10px 0 0; line-height: 0.96; }
+.sound-head h3 { font-family: var(--ff-display); font-size: clamp(26px, 4vw, 40px); text-transform: uppercase; letter-spacing: 0.04em; margin: 10px 0 0; line-height: 0.96; }
 .sound-sub { margin: 12px 0 0; max-width: 42ch; color: var(--on-dark-70); font-size: 14px; }
 /* toggle */
 .switch-toggle { display: inline-flex; gap: 6px; background: rgba(255,255,255,0.04); border: 1px solid var(--hairline); border-radius: 999px; padding: 5px; }
@@ -523,10 +523,12 @@ body.nav-open .mobile-nav { opacity: 1; transform: none; pointer-events: auto; }
 .trust-cell {
   padding: 26px 22px; border: 1px solid var(--hairline-d); border-radius: var(--radius);
   background: var(--white); display: flex; flex-direction: column; gap: 12px;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
+.trust-cell:hover { transform: translateY(-4px); border-color: rgba(239,206,26,0.45); box-shadow: 0 22px 44px -24px rgba(0,0,0,0.35); }
 .trust-cell .t-ico { width: 26px; height: 26px; color: var(--ink); }
-.trust-cell h3 { margin: 0; font-family: var(--ff-display); font-size: 17px; text-transform: uppercase; line-height: 1.05; letter-spacing: 0.01em; }
-.trust-cell p { margin: 0; font-size: 12.5px; color: var(--on-light-70); line-height: 1.5; }
+.trust-cell h3 { margin: 0; font-family: var(--ff-display); font-size: 21px; text-transform: uppercase; line-height: 1.05; letter-spacing: 0.01em; }
+.trust-cell p { margin: 0; font-size: 14.5px; color: var(--on-light-70); line-height: 1.5; }
 .trust-cell a { color: var(--ink); border-bottom: 1px solid var(--yellow); }
 /* emphasized 600-unit rarity panel — dark card pops on the white section */
 .trust-cell--rarity {
@@ -538,7 +540,7 @@ body.nav-open .mobile-nav { opacity: 1; transform: none; pointer-events: auto; }
 .rarity-sub { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-dark-55); }
 .rarity-bar { height: 6px; border-radius: 999px; background: rgba(255,255,255,0.1); overflow: hidden; margin: 14px 0 6px; }
 .rarity-bar i { display: block; height: 100%; width: 6%; background: var(--yellow); border-radius: 999px; box-shadow: 0 0 12px rgba(239,206,26,0.65); }
-.trust-cell--rarity p { color: var(--on-dark-70); font-size: 12px; }
+.trust-cell--rarity p { color: var(--on-dark-70); font-size: 14px; }
 
 /* ============================================================================
    JOIN THE FLOCK
