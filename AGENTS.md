@@ -9,6 +9,9 @@ This repository is a **static site**, not a Next.js project. There is no `app/`,
 
 When adding routes:
 - API routes are files under `api/` (Vercel serverless function convention)
-- There is no middleware layer — the site is essentially static
+- `middleware.js` (root, Vercel Edge Middleware) gates the whole site behind a
+  password — see `docs/superpowers/specs/2026-06-08-site-password-gate-design.md`.
+  It fails closed: the `SITE_PASSWORD` and `GATE_TOKEN` env vars MUST be set in
+  Vercel or the site locks out everyone. Public paths are allowlisted in the file.
 
 See `README.md` for the full file map.
